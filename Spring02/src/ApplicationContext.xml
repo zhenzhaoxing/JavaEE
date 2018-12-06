@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- id表示获取到对象标识 class 创建哪个类的对象 -->
+	<bean id="stu" class="cn.starsw.pojo.Student"><!-- 1种 -->
+		<property name="id">
+			<value>222</value>
+		</property>
+		<property name="name" value="甄兆星"></property>
+		<property name="sets">
+			<set>
+				<value>甄</value>
+				<value>兆</value>
+				<value>星</value>
+			</set>
+		</property>
+		<property name="list">
+			<list>
+				<value>山</value>
+				<value>东</value>
+				<value>菏泽</value>
+			</list>
+		</property>
+		<property name="map">
+			<map>
+				<entry key="1" value="你">
+
+				</entry>
+				<entry key="2" value="你">
+
+				</entry>
+				<entry key="3" value="你">
+
+				</entry>
+			</map>
+
+		</property>
+		<!-- 对象  -->
+     <property name="com" ref="com"></property>
+
+	</bean>
+	<bean id="com" class="cn.starsw.pojo.Computer">
+		<property name="id" value="1"></property>
+		<property name="price" value="6000"></property>
+	</bean>
+</beans>
