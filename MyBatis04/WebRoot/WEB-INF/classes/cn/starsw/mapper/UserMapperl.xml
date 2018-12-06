@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namesapce:理解成实现类的全路径(包名+类名) -->
+<!-- id:方法名 parameterType:定义参数类型 resultType:返回值类型. 如果方法返回值是list,在resultType中写List的泛型,因为mybatis 
+	对jdbc封装,一行一行读取数据 -->
+<mapper namespace="cn.starsw.mapper.UserMapperl">
+	<!-- resultType 控制的是返回的类型 parameterType 是参数类型 -->
+	<select id="seletcAll" resultType="Student">
+
+		select*from student
+	</select>
+	<!-- <select id="selByAccInAccout" resultType="Student"> select *from student 
+		where name=#{name} and age=#{age} </select> -->
+	<!-- 以下是动态sql -->
+
+<!--   测试if标签
+	<select id="selByAccInAccout" resultType="Log">
+		select *from log where 1=1
+		<if test="accin!=null and accin!=''">
+			and accIn=#{accin}
+		</if>
+		<if test="accOut!=null and accOut!=''">
+			and accOut=#{accOut}
+		</if>
+
+	</select>
+-->
+<!-- 测试where标签
+
+
+<select id="selByAccInAccout" resultType="Log">
+		select *from log 
+		<where>
+		<if test="accin!=null and accin!=''">
+			and accIn=#{accin}
+		</if>
+		<if test="accOut!=null and accOut!=''">
+			and accOut=#{accOut}
+		</if>
+</where>
+	</select>
+-->
+
+<!-- 测试 choose when otherwise标签 
+
+<select id="selByAccInAccout" resultType="Log">
+		select *from log 
+		<where>
+		<choose>
+		<when test="accin!=null and accin!=''">
+		and accIn=#{accin}
+		</when>
+		<when test="accOut!=null and accOut!=''">
+		and accOut=#{accOut}
+		</when>
+		</choose>
+</where>
+	</select>
+-->
+<!-- 测试set标签  可去掉最后的逗号 有内容生成set 没有就不生成
+ <update id="upd" parameterType="log">
+ update log
+	<set>
+		id=#{id},
+		<if test="accIn!=null and accIn!=''">
+			 accIn=#{accIn},
+		</if>
+		<if test="accOut!=null and accOut!=''">
+			accOut=#{accOut},
+		</if>
+	</set>
+where id=#{id}
+</update>
+-->
+
+<!-- 测试Trim代码   prefix 在前面添加内容   先去掉内容在添加内容 
+<update id="upd" parameterType="log">
+	update log
+	<trim prefix="set" suffixOverrides=",">
+		money=10,
+	</trim>
+	where id=1
+
+</update>
+-->
+<!--  测试bind代码 给参数重新赋值 
+<select id="selByLog" parameterType="log" resultType="log">
+<bind name="accOut" value="'%'+accOut+'%'"/>
+#{accOut}
+</select>
+-->
+<!-- foreach标签  做循环  具备添加分隔符 个在前后添加内容-->
+<select id="selIn" parameterType="list" resultType="log">
+select *from log where id in 
+<foreach collection="list" item="a" open="(" close=")" separator=",">
+#{a}
+</foreach>
+
+</select>
+<select id="">
+		 select <include refid="mysql"></include>
+		 from log
+	</select>
+	
+	<sql id="mysql">
+		id,accin,accout,money
+	</sql>
+</mapper>
