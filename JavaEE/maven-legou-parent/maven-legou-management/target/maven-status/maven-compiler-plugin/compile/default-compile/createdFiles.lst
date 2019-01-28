@@ -1,0 +1,4 @@
+com\bjsxt\service\impl\PicServiceImpl.class
+com\bjsxt\service\PicService.class
+com\bjsxt\controller\PicController.class
+com\bjsxt\mapper\PicMapper.class

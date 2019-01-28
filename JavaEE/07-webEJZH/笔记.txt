@@ -1,0 +1,5 @@
+             mvc开发模式  model  javabean
+                      view   jsp展示视图
+                      controrler  servlet 对数据的处理  精炼便与维护 各自干各自擅长的事情
+              3层应用架构  web  service  Dao层（与数据库打交道） 
+                     

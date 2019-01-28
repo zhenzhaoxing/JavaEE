@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- 配置时一定要按顺序执行 -->
+	<!-- 这是配置log4j文件de -->
+	<settings>
+		<setting name="logImpl" value="LOG4J"/>
+	</settings>
+	
+	<typeAliases>
+	
+	<!-- <typeAlias type="cn.starsw.pojo.Student" alias="Stu"/>
+ -->	
+ <package name="cn.starsw.pojo"/>
+	</typeAliases>
+	
+	<!-- 选择数据库 像orcle mysql 等 -->
+	<environments default="default">
+		<environment id="default">
+			<!-- 定义事物管理器 -->
+			<transactionManager type="JDBC">
+			</transactionManager>
+			<!-- pooled 说明使用数据库连接池 -->
+			<dataSource type="POOLED">
+				<property name="driver" value="com.mysql.jdbc.Driver" />
+				<property name="url" value="jdbc:mysql://localhost:3306/user" />
+				<property name="username" value="root" />
+				<property name="password" value="110110" />
+			</dataSource>
+		</environment>
+	</environments>
+	<!-- 写要连接的文件 -->
+	<mappers>
+		<mapper resource="cn/starsw/mapper/StudentMapperl.xml"/>
+		<mapper resource="cn/starsw/mapper/TeacherMapperl.xml"/>
+	</mappers>
+</configuration>
